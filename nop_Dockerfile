@@ -1,4 +1,4 @@
- FROM ubuntu:22.04 as unzip
+ FROM ubuntu:22.04 as ubuntu
  RUN mkdir /nopCommerce
  RUN    apt update && \
         apt install unzip && \
@@ -8,7 +8,7 @@
 
  FROM mcr.microsoft.com/dotnet/aspnet:6.0
  LABEL author="srikanth"
- COPY  --from=unzip /nopCommerce /nopCommerce
+ COPY  --from=ubuntu /nopCommerce /nopCommerce
  WORKDIR /nopCommerce
  EXPOSE 5000
  CMD ["dotnet","/nopCommerce/Nop.Web.dll"]
