@@ -1,0 +1,5 @@
+FROM python:alpine3.19
+EXPOSE 5000
+RUN apk update && apk add git && git clone https://github.com/Sysnove/flask-hello-world.git && cd flask-hello-world && pip install --no-cache-dir -r requirements.txt && mv hello.py app.py
+WORKDIR /flask-hello-world
+CMD ["flask", "run", "-h", "0.0.0.0"]
